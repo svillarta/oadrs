@@ -1,0 +1,50 @@
+
+.PrintArea {
+    margin:0px;
+    padding: 0px;
+    width: 100%;
+    height:400px;
+    font-size: 10px;
+}
+.buttonBar {
+    height: 30px;
+}
+.buttonBar div {
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+    padding: 3px 12px;
+    cursor: pointer;
+}
+.button {
+    background: none repeat scroll 0 0 #999999;
+    border: 1px solid blue;
+    color: #EEEEEE;
+    text-align: center;
+}
+
+
+
+span.test {
+    color: red;
+}
+
+#Retain.PrintArea.area1 {
+    border: 2px solid #999;
+}
+
+.PrintArea.area1 {
+    border: solid 1px transparent;
+}
+
+.PrintArea.area2 {
+    border-top: solid 1px #20ff58;
+}
+
+.PrintArea.area3 {
+    border: solid 1px transparent;
+    
+}
+.PrintArea.area4 {
+    border: solid 1px  #000000;
+}
