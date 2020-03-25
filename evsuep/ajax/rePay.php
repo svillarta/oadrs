@@ -2,6 +2,7 @@
 include ('../db_config/connection.php');
 $output = '';
 $lastSid = '';
+$data = array();
 $queryStudent = mysqli_query($conn,"SELECT * FROM online_account");
 if (mysqli_num_rows($queryStudent)>0) {
 	while ($rowStudent = mysqli_fetch_assoc($queryStudent)) {
@@ -29,18 +30,17 @@ if (mysqli_num_rows($queryStudent)>0) {
 						$srequest = $rowSReq['srequest'];
 						$purpose = $rowSReq['purpose'];
 					}
-					$output .= '
-						<tr scope="row">
-							<td ><center>'.$sid.'</center></td>
-							<td ><center> '.$fullname.'</center></td>
-							<td >'.$email.' </td>
-							<td ><center>'.$contactno.'</center></td>
-							<td >'.$department.'<center><i class="btn-sm" style="font-size: 13px;">('.$course.')</i></center></center></td>
-							<td><center><a class="pull-center btn btn-success btn-sm pay" href="" sid="'.$sid.'""><span class="fa fa-paper-plane"></span>  Pay</a></center></td>
-						</tr>
-							';
-
 					
+
+					$data[] = array(
+						'id' => $sid, 
+						'fullname' => $fullname, 
+						'email' => $email, 
+						'contactno' => $contactno, 
+						'departmentCourse' => $department.' | '.$course,
+						'sid'  => '<center><a class="pull-center btn btn-success btn-sm pay" href="" sid="'.$sid.'""><span class="fa fa-paper-plane"></span>  Pay</a></center></td>'
+
+					);
 				}else{
 
 				}	
@@ -51,5 +51,5 @@ if (mysqli_num_rows($queryStudent)>0) {
 	}
 }
 
-echo $output;
+echo json_encode($data);
 ?>

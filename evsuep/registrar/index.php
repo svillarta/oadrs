@@ -67,6 +67,11 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
     })(window, document, 'script', 'dataLayer', 'GTM-NKDMSK6');
   </script>
   <!-- End Google Tag Manager -->
+  <style type="text/css">
+    tr{
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body class="">
@@ -173,7 +178,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
           <li class="nav-item ">
             <a class="nav-link" data-toggle="collapse" href="#report">
               <i class="material-icons">report</i>
-              <p> Releasing
+              <p> Reports
                 <b class="caret"></b>
               </p>
             </a>
@@ -280,9 +285,29 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
                     <a href="" class="btn btn-link col">GOODMORAL</a>
                     <a href="" class="btn btn-link col">HONORABLE DISMISSAL</a>
                   </div><hr>
-                  <div id="accordion">
-                    
-                  </div>
+                    <div class="material-datatables">
+                      <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                        <thead>
+                          <tr>
+                            <th>Student ID</th>
+                            <th>Full Name</th>
+                            <th>E-mail</th>
+                            <th>Contact No.</th>
+                            <th>Department</th>
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr>
+                            <th>Student ID</th>
+                            <th>Full Name</th>
+                            <th>E-mail</th>
+                            <th>Contact No.</th>
+                            <th>Department</th>
+                          </tr>
+                        </tfoot>
+                       
+                      </table>
+                    </div>
                   
                        
                       
@@ -481,7 +506,8 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
   <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
   <script src="../../assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
   <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-  <script src="https://demos.creative-tim.com/material-dashboard-pro/assets/js/plugins/jquery.dataTables.min.js"></script>
+
+  <script src="../../assets/js/plugins/jquery.dataTables.min.js"></script>
   <!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
   <script src="../../assets/js/plugins/bootstrap-tagsinput.js"></script>
   <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
@@ -508,18 +534,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
   <script src="../../assets/js/material-dashboard.min.js" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="../../assets/demo/demo.js"></script>
-  <script type="text/javascript">
-  //first load
-  function firstLoad() {
-    $.ajax({
-         url:"../ajax/firstLoad.php",
-          success:function(data3){
-            $('#accordion').html(data3);
-         }
-       });
-  }
-  firstLoad();
-</script>
+  
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -777,44 +792,47 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
 
     });
   </script>
-  <noscript>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
-  </noscript>
+
   <script>
     $(document).ready(function() {
-      $('#datatables').DataTable({
-        "pagingType": "full_numbers",
-        "lengthMenu": [
-          [10, 25, 50, -1],
-          [10, 25, 50, "All"]
-        ],
-        responsive: true,
-        language: {
-          search: "_INPUT_",
-          searchPlaceholder: "Search records",
-        }
-      });
+      firstLoad();
+      function firstLoad(){
+        var table = $('#datatables').DataTable({
+          "pagingType": "full_numbers",
+          "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+          ],
+          responsive: true,
+          language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search records"
+          },
 
-      var table = $('#datatable').DataTable();
+          "ajax":{
+            "url":"../ajax/firstLoad.php",
+            "dataSrc":""
+          },
+          "columns":[
+            {"data":"sid"},
+            {"data":"fullname"},
+            {"data":"email"},
+            {"data":"contactno"},
+            {"data":"depCourse"}
+          ]
+        });
 
-      // Edit record
-      table.on('click', '.edit', function() {
-        $tr = $(this).closest('tr');
-        var data = table.row($tr).data();
-        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-      });
 
-      // Delete a record
-      table.on('click', '.remove', function(e) {
-        $tr = $(this).closest('tr');
-        table.row($tr).remove().draw();
-        e.preventDefault();
-      });
-
-      //Like record
-      table.on('click', '.like', function() {
-        alert('You clicked on Like button');
-      });
+        // Delete a record
+        table.on('click', 'tr', function(e) {
+          $tr = $(this).closest('tr');
+          var data = table.row($tr).data();
+          $('#modalSid').val(data['sid']);
+          studentRequest();
+          $('#requests').modal('show');
+          e.preventDefault();
+        });
+       }
     });
   </script>
   </body>

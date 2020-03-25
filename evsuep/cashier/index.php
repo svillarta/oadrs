@@ -7,7 +7,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
 
  include ('../db_config/connection.php');
 
-$sql = "SELECT * FROM users where username='$myusername' and utype='Cashier'";
+$sql = "SELECT * FROM users where username='$myusername' and utype='Registrar'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -24,6 +24,7 @@ if ($result->num_rows > 0) {
 } else {
     header("location:../?login_err=You must login first");
 }
+$fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -274,9 +275,7 @@ if ($result->num_rows > 0) {
                           <th class="text-right">Actions</th>
                         </tr>
                       </tfoot>
-                      <tbody id="content">
-                        
-                      </tbody>
+                      
                     </table>
                   </div>
                 </div>
@@ -502,7 +501,7 @@ if ($result->num_rows > 0) {
   <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
   <script src="../../assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
   <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-  <script src="https://demos.creative-tim.com/material-dashboard-pro/assets/js/plugins/jquery.dataTables.min.js"></script>
+  <script src="../../assets/js/plugins/jquery.dataTables.min.js"></script>
   <!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
   <script src="../../assets/js/plugins/bootstrap-tagsinput.js"></script>
   <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
@@ -786,44 +785,80 @@ if ($result->num_rows > 0) {
 
     });
   </script>
-  <noscript>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
-  </noscript>
+<script type="text/javascript">
+  //printing receipt
+  $(document).on('click','.close1',function(envent){
+    event.preventDefault();
+    location.reload();
+  });
+
+  $(document).on('click','#print',function(envent){
+    event.preventDefault();
+    var sid = $('#sid').val();
+    $.ajax({  
+        url:"../ajax/pay.php",
+        type:'post',
+        data:{sid:sid},
+        beforeSend: function(){
+          
+        },    
+        success:function(dataa){
+          //printing content
+          if (dataa =='success') {
+            
+            var printContents = document.getElementById('printNow').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
+            location.reload();
+          }else{
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Somethning wrong',
+              footer: dataa
+            })
+          }
+        }
+    });
+    
+
+  });
+  
+
+
+</script>
   <script>
     $(document).ready(function() {
-      $('#datatables').DataTable({
-        "pagingType": "full_numbers",
-        "lengthMenu": [
-          [10, 25, 50, -1],
-          [10, 25, 50, "All"]
-        ],
-        responsive: true,
-        language: {
-          search: "_INPUT_",
-          searchPlaceholder: "Search records",
-        }
-      });
+      firstLoad();
+      function firstLoad(){
+        var table = $('#datatables').DataTable({
+          "pagingType": "full_numbers",
+          "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+          ],
+          responsive: true,
+          language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search records"
+          },
 
-      var table = $('#datatable').DataTable();
-
-      // Edit record
-      table.on('click', '.edit', function() {
-        $tr = $(this).closest('tr');
-        var data = table.row($tr).data();
-        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-      });
-
-      // Delete a record
-      table.on('click', '.remove', function(e) {
-        $tr = $(this).closest('tr');
-        table.row($tr).remove().draw();
-        e.preventDefault();
-      });
-
-      //Like record
-      table.on('click', '.like', function() {
-        alert('You clicked on Like button');
-      });
+          "ajax":{
+            "url":"../ajax/rePay.php",
+            "dataSrc":""
+          },
+          "columns":[
+            {"data":"id"},
+            {"data":"fullname"},
+            {"data":"email"},
+            {"data":"contactno"},
+            {"data":"departmentCourse"},
+            {"data":"sid"}
+          ]
+        });
+       }
     });
   </script>
   </body>
@@ -832,7 +867,6 @@ if ($result->num_rows > 0) {
 <script type="text/javascript">
 var audio = new Audio('../../sounds/facebook_pc.mp3');
 var lastCount = 0;
-
 setInterval(function () {
   //count pending request
   $.ajax({  
@@ -858,18 +892,6 @@ setInterval(function () {
     });
 }, 2000);
 </script>
-<script type="text/javascript">
-  //first load data
-  function firstLoad() {
-    $.ajax({
-         url:"../ajax/rePay.php",
-          success:function(data3){
-            $('#content').html(data3);
-         }
-       });
-  }
-  firstLoad();
-</script>
 
 <script type="text/javascript">
   $(document).on('click','.pay',function(envent){
@@ -883,7 +905,7 @@ setInterval(function () {
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, update it!'
+        confirmButtonText: 'Yes, Pay it!'
       }).then((result) => {
         if (result.value) {
           $.ajax({  
@@ -904,51 +926,7 @@ setInterval(function () {
   });
 </script>
 
-<script type="text/javascript">
-  //printing receipt
-  $(document).on('click','.close1',function(envent){
-    event.preventDefault();
-    location.reload();
-  });
 
-  $(document).on('click','#print',function(envent){
-    event.preventDefault();
-    var sid = $('#sid').val();
-    $.ajax({  
-        url:"../ajax/pay.php",
-        type:'post',
-        data:{sid:sid},
-        beforeSend: function(){
-          
-        },    
-        success:function(dataa){
-          //printing content
-          if (dataa =='success') {
-            
-            firstLoad();
-            var printContents = document.getElementById('printNow').innerHTML;
-            var originalContents = document.body.innerHTML;
-            document.body.innerHTML = printContents;
-            window.print();
-            document.body.innerHTML = originalContents;
-            location.reload();
-          }else{
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Somethning wrong',
-              footer: dataa
-            })
-          }
-        }
-    });
-    
-
-  });
-  
-
-
-</script>
 
 <script>
 //Make the DIV element draggagle:

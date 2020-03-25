@@ -172,7 +172,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
           <li class="nav-item ">
             <a class="nav-link" data-toggle="collapse" href="#report">
               <i class="material-icons">report</i>
-              <p> Releasing
+              <p> Reports
                 <b class="caret"></b>
               </p>
             </a>

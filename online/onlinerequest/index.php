@@ -469,7 +469,7 @@ h2 {
         </footer>
       </div>
     </div>
-    <div class="fixed-plugin">
+    <!-- <div class="fixed-plugin">
       <div class="dropdown show-dropdown">
         <a href="#" data-toggle="dropdown">
           <i class="fa fa-cog fa-2x"> </i>
@@ -570,7 +570,7 @@ h2 {
           </li>
         </ul>
       </div>
-    </div>
+    </div> -->
     <!--   Core JS Files   -->
   <script src="../../assets/js/core/jquery.min.js"></script>
   <script src="../../assets/js/core/popper.min.js"></script>

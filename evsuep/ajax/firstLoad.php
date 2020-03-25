@@ -3,33 +3,9 @@ $count = 0;
 $output = '';
 include '../db_config/connection.php';
 
-
+$data=array();
 $studentsort = mysqli_query($conn,"SELECT * FROM studentsort ORDER BY id DESC");
 if (mysqli_num_rows($studentsort)>0) {
-  $output .='
-   <div class="material-datatables">
-                    <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                      <thead>
-                        <tr>
-                          <th>Student ID</th>
-                          <th>Full Name</th>
-                          <th>E-mail</th>
-                          <th>Contact No.</th>
-                          <th>Department</th>
-                          <th>Course</th>
-                        </tr>
-                      </thead>
-                       <tfoot>
-                        <tr>
-                         <th>Student ID</th>
-                          <th>Full Name</th>
-                          <th>E-mail</th>
-                          <th>Contact No.</th>
-                          <th>Department</th>
-                          <th>Course</th>
-                        </tr>
-                      </tfoot>
-                      <tbody  role="tablist" >';
   while ($studentsortRow = mysqli_fetch_assoc($studentsort)) {
     $sid = $studentsortRow['sid'];
 
@@ -47,33 +23,26 @@ if (mysqli_num_rows($studentsort)>0) {
           $contactno = $row['contactno'];
           $department = $row['department'];
           $course = $row['course'];
-
-          $output .='
-            <td>'.$sid.'</td>
-            <td>'.$fname.' '.$mi.'. '.$lname.'</td>
-            <td>'.$email.'</td>
-            <td>'.$contactno.'</td>
-            <td>'.$department.'</td>
-            <td>'.$course.'</td>
-            ';
+          $data[] = array(
+            'sid' => $sid, 
+            'fullname' => $fname.' '.$mi.'. '.$lname, 
+            'email' => $email, 
+            'contactno' => $contactno, 
+            'depCourse' => $department.' | '.$course, 
+          );
 
         }
       }else{
 
       }
-      $output .='</tr>';
+     
     }else{
       
     }
-
-    
   }
-  $output .='
-  </tbody>
-                    </table>
-                  </div>';
+  
 }else{
   
 }
-echo $output;
+echo json_encode($data)
 ?>

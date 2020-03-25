@@ -99,7 +99,7 @@ if (mysqli_num_rows($queryStudent)>0) {
 
 }
 
-$query = mysqli_query($conn,"SELECT * FROM s_payment WHERE sid ='$sid'");
+$query = mysqli_query($conn,"SELECT * FROM s_payment WHERE sid ='$sid' AND remarks ='Ready'");
 if(mysqli_num_rows($query)>0){
 	while ($row =mysqli_fetch_assoc($query)) {
 		$spid = $row['spid'];
@@ -120,7 +120,7 @@ if(mysqli_num_rows($query)>0){
 			$page = 'pages';
 
 		}
-		$querySReq = mysqli_query($conn,"SELECT * FROM s_request WHERE sid ='$sid'");
+		$querySReq = mysqli_query($conn,"SELECT * FROM s_request WHERE srid ='$srid'");
 		if (mysqli_num_rows($querySReq)>0) {
 			while ($rowSReq = mysqli_fetch_assoc($querySReq)) {
 				$srid = $rowSReq['srid'];
@@ -133,9 +133,7 @@ if(mysqli_num_rows($query)>0){
 				}
 			}
 			$total = $newsamount + $total;
-			$sdate = date("m/d/Y");
-			mysqli_query($conn,"UPDATE s_request SET remarks1='Paid' WHERE srid ='$srid'");
-			mysqli_query($conn,"UPDATE s_payment SET sdate='$sdate' WHERE srid ='$srid'");
+
 			$output .='
 					
 		            <tr>

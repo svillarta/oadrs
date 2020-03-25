@@ -34,7 +34,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
   <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    Material Dashboard PRO by Creative Tim
+    OADRS
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!-- Extra details for Live View on GitHub Pages -->
@@ -172,7 +172,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
           <li class="nav-item ">
             <a class="nav-link" data-toggle="collapse" href="#report">
               <i class="material-icons">report</i>
-              <p> Releasing
+              <p> Reports
                 <b class="caret"></b>
               </p>
             </a>
@@ -207,7 +207,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
                 <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
               </button>
             </div>
-            <a class="navbar-brand" href="#pablo">Dashboard</a>
+            <a class="navbar-brand" href="#pablo">Released Files</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -265,34 +265,80 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
           <div class="row">
             <div class="col-md-12">
               <div class="card">
-                <div class="card-header card-header-primary card-header-icon" id="addStudent" style="cursor: pointer;">
-                  <div class="card-icon">
-                    <i class="material-icons">person_add</i>
+                <div class="card-header card-header-primary card-header-icon row" >
+                  <div class="col-md-6" id="addStudent" style="cursor: pointer;">
+                    <div class="card-icon">
+                      <i class="material-icons">person_add</i>
+                    </div>
+                    <h4 class="card-title">Add Student</h4>
                   </div>
-                  <h4 class="card-title">Add Student</h4>
+                  <div class="col-md-6" style="color: gray; ">
+                    <form action="" method="POST" id="monthlyForm">
+                        
+                      
+                    <div class="row">
+                      
+                      <div class="col-md-6">
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            Report Date
+                          </div>
+                          <div class="panel-footer">
+                            <input type="month" name="reportMonhtly" id="reportMonhtly" class="form-control" required="">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="panel panel-default">
+                          <div class="panel-body">
+                            If you want to save the file
+                          </div>
+                          <div class="panel-footer">
+                            <input type="submit" name=""  class="btn btn-primary btn-block btn-fill btn-sm" value="Save As">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </form>
+                  </div>
                 </div>
                 <div class="card-body">
-                  <div class="toolbar row" >
-                    <a href="" class="btn btn-link col">TRANSCRIPT OF RECORD</a>
-                    <a href="" class="btn btn-link col">CERTIFICATE OF GRADES</a>
-                    <a href="" class="btn btn-link col">GOODMORAL</a>
-                    <a href="" class="btn btn-link col">HONORABLE DISMISSAL</a>
+
+                  <div class="toolbar row">
+
+                    
                   </div><hr>
-                  <div class="material-datatables">
-                    <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                      <thead>
-                        <tr>
-                          <th>Name</th>
-                        </tr>
-                      </thead>
-                      <tfoot>
-                        
-                      </tfoot>
-                      <tbody id="accordion" role="tablist" >
+                    <div class="material-datatables">
+                      <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                        <thead>
+                          <tr>
+                            <th>Student ID</th>
+                            <th>Full Name</th>
+                            <th>E-mail</th>
+                            <th>Contact No.</th>
+                            <th>Department</th>
+                            <th>Requested File(s)</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tfoot>
+                          <tr>
+                            <th>Student ID</th>
+                            <th>Full Name</th>
+                            <th>E-mail</th>
+                            <th>Contact No.</th>
+                            <th>Department</th>
+                            <th>Requested File(s)</th>
+                            <th>Action</th>
+                          </tr>
+                        </tfoot>
+                       <tbody>
+                       </tbody>
+                      </table>
+                    </div>
+                  
                        
-                      </tbody>
-                    </table>
-                  </div>
+                      
                 </div>
                 <!-- end content-->
               </div>
@@ -325,163 +371,86 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
         </footer>
       </div>
     </div>
-    <div class="fixed-plugin">
-      <div class="dropdown show-dropdown">
-        <a href="#" data-toggle="dropdown">
-          <i class="fa fa-cog fa-2x"> </i>
-        </a>
-        <ul class="dropdown-menu">
-          <li class="header-title"> Sidebar Filters</li>
-          <li class="adjustments-line">
-            <a href="javascript:void(0)" class="switch-trigger active-color">
-              <div class="badge-colors ml-auto mr-auto">
-                <span class="badge filter badge-purple" data-color="purple"></span>
-                <span class="badge filter badge-azure" data-color="azure"></span>
-                <span class="badge filter badge-green" data-color="green"></span>
-                <span class="badge filter badge-warning" data-color="orange"></span>
-                <span class="badge filter badge-danger" data-color="danger"></span>
-                <span class="badge filter badge-rose active" data-color="rose"></span>
-              </div>
-              <div class="clearfix"></div>
-            </a>
-          </li>
-          <li class="header-title">Sidebar Background</li>
-          <li class="adjustments-line">
-            <a href="javascript:void(0)" class="switch-trigger background-color">
-              <div class="ml-auto mr-auto">
-                <span class="badge filter badge-black active" data-background-color="black"></span>
-                <span class="badge filter badge-white" data-background-color="white"></span>
-                <span class="badge filter badge-red" data-background-color="red"></span>
-              </div>
-              <div class="clearfix"></div>
-            </a>
-          </li>
-          <li class="adjustments-line">
-            <a href="javascript:void(0)" class="switch-trigger">
-              <p>Sidebar Mini</p>
-              <label class="ml-auto">
-                <div class="togglebutton switch-sidebar-mini">
-                  <label>
-                    <input type="checkbox">
-                    <span class="toggle"></span>
-                  </label>
-                </div>
-              </label>
-              <div class="clearfix"></div>
-            </a>
-          </li>
-          <li class="adjustments-line">
-            <a href="javascript:void(0)" class="switch-trigger">
-              <p>Sidebar Images</p>
-              <label class="switch-mini ml-auto">
-                <div class="togglebutton switch-sidebar-image">
-                  <label>
-                    <input type="checkbox" checked="">
-                    <span class="toggle"></span>
-                  </label>
-                </div>
-              </label>
-              <div class="clearfix"></div>
-            </a>
-          </li>
-          <li class="header-title">Images</li>
-          <li class="active">
-            <a class="img-holder switch-trigger" href="javascript:void(0)">
-              <img src="../assets/img/sidebar-1.jpg" alt="">
-            </a>
-          </li>
-          <li>
-            <a class="img-holder switch-trigger" href="javascript:void(0)">
-              <img src="../assets/img/sidebar-2.jpg" alt="">
-            </a>
-          </li>
-          <li>
-            <a class="img-holder switch-trigger" href="javascript:void(0)">
-              <img src="../assets/img/sidebar-3.jpg" alt="">
-            </a>
-          </li>
-          <li>
-            <a class="img-holder switch-trigger" href="javascript:void(0)">
-              <img src="../assets/img/sidebar-4.jpg" alt="">
-            </a>
-          </li>
-          <li class="button-container">
-            <a href="../../product/material-dashboard-pro.htm" target="_blank" class="btn btn-rose btn-block btn-fill">Buy Now</a>
-            <a href="../docs/2.1/getting-started/introduction.html" target="_blank" class="btn btn-default btn-block">
-              Documentation
-            </a>
-            <a href="../../product/material-dashboard_2.htm" target="_blank" class="btn btn-info btn-block">
-              Get Free Demo!
-            </a>
-          </li>
-          <li class="button-container github-star">
-            <a class="github-button" href="https://github.com/creativetimofficial/ct-material-dashboard-pro" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">Star</a>
-          </li>
-          <li class="header-title">Thank you for 95 shares!</li>
-          <li class="button-container text-center">
-            <button id="twitter" class="btn btn-round btn-twitter"><i class="fa fa-twitter"></i> &middot; 45</button>
-            <button id="facebook" class="btn btn-round btn-facebook"><i class="fa fa-facebook-f"></i> &middot; 50</button>
-            <br>
-            <br>
-          </li>
-        </ul>
+
+    <!-- Reporting and pringting -->
+    <!--page Count-->
+<div class="modal fade" id="monthlyReportPrinting" role="dialog" aria-labelledby="gridSystemModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header"> 
+        <h4 class="modal-title" id="gridSystemModalLabel"></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
-    </div>
+      <div class="modal-body">
+        <div class="material-datatables">
+          <table id="datatablesReport" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="display: none;">
+            <thead>
+              <tr>
+                <th>Student ID</th>
+                <th>Full Name</th>
+                <th>E-mail</th>
+                <th>Contact No.</th>
+                <th>Department</th>
+                <th>Requested File(s)</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>Student ID</th>
+                <th>Full Name</th>
+                <th>E-mail</th>
+                <th>Contact No.</th>
+                <th>Department</th>
+                <th>Requested File(s)</th>
+              </tr>
+            </tfoot>
+           <tbody>
+           </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer row">
+        <button type="button" class="btn btn-default" id="close" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
 
     <!--page Count-->
 <div class="modal fade" id="countPage" role="dialog" aria-labelledby="gridSystemModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header"> 
-        <h4 class="modal-title" id="gridSystemModalLabel">Page Count</h4>
+        <h4 class="modal-title" id="gridSystemModalLabel"></h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
         <div class="container-fluid">
           <div class="row">
             <div class="col-lg-12 ">
-              <p style="background-color: #D1D0CE">How many page for <code id="srequest"></code>?</p>
+              <p style="background-color: #D1D0CE">File Requested<code id="srequest"></code></p>
               <hr>
-              <input type="hidden" name="" id="srid">
-              <input type="hidden" name="" id="sid">
             </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 input-group " id="reqFile">
 
-            <div class="row">
-              <div class="col-md-12 input-group form-control-lg">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="material-icons">edit</i>
-                  </span>
-                </div>
-                <div class="form-group bmd-form-group">
-                  <label for="contactNo" class="bmd-label-floating">Page Count</label>
-                  <input type="number" class="form-control col-md-12" id="pageCount" name="contactNo" required="" >
-                </div>
-              </div>
-              <div class="col-md-12 input-group form-control-lg">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="material-icons">edit</i>
-                  </span>
-                </div>
-                <div class="form-group bmd-form-group">
-                  <label for="contactNo" class="bmd-label-floating">Page Count</label>
-                  <input type="number" class="form-control col-md-12" id="pageCount" name="contactNo" required="" >
-                </div>
-              </div>
             </div>
-
           </div>
         </div>
       </div>
       <div class="modal-footer row">
-        <button type="button" class="btn btn-default col" id="close" data-dismiss="modal">Close</button>
-        <button class="btn btn-primary" type="button col" id="loading" disabled=""><i class="fa fa-spinner fa-spin"></i> Loading...</span></button>
-        <button type="button" class="btn btn-primary col" id="pageSave">Proceed</button>
+        <button type="button" class="btn btn-default" id="close" data-dismiss="modal">Close</button>
+        
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
 
     <!--   Core JS Files   -->
   <script src="../../assets/js/core/jquery.min.js"></script>
@@ -501,7 +470,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
   <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
   <script src="../../assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
   <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-  <script src="https://demos.creative-tim.com/material-dashboard-pro/assets/js/plugins/jquery.dataTables.min.js"></script>
+  <script src="../../assets/js/plugins/jquery.dataTables.min.js"></script>
   <!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
   <script src="../../assets/js/plugins/bootstrap-tagsinput.js"></script>
   <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
@@ -788,56 +757,67 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
   <noscript>
     <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=111649226022273&ev=PageView&noscript=1" />
   </noscript>
-  <script>
-    $(document).ready(function() {
-      $('#datatables').DataTable({
-        "pagingType": "full_numbers",
-        "lengthMenu": [
-          [10, 25, 50, -1],
-          [10, 25, 50, "All"]
-        ],
-        responsive: true,
-        language: {
-          search: "_INPUT_",
-          searchPlaceholder: "Search records",
-        }
-      });
-
-      var table = $('#datatable').DataTable();
-
-      // Edit record
-      table.on('click', '.edit', function() {
-        $tr = $(this).closest('tr');
-        var data = table.row($tr).data();
-        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
-      });
-
-      // Delete a record
-      table.on('click', '.remove', function(e) {
-        $tr = $(this).closest('tr');
-        table.row($tr).remove().draw();
-        e.preventDefault();
-      });
-
-      //Like record
-      table.on('click', '.like', function() {
-        alert('You clicked on Like button');
-      });
-    });
-  </script>
+  
   </body>
-
+<!-- <button type="button" rel="tooltip" title="" class="btn btn-primary btn-link btn-sm" data-original-title="Edit Task">
+                                <i class="material-icons">edit</i>
+                              <div class="ripple-container"></div></button> -->
 </html>
 <script type="text/javascript">
   //first load
-  function firstLoad() {
-    $.ajax({
-         url:"../ajax/firstLoad2.php",
-          success:function(data3){
-            $('#accordion').html(data3);
-         }
-       });
-  }
+      function firstLoad(){
+        var table = $('#datatables').DataTable({
+          "pagingType": "full_numbers",
+          "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+          ],
+          responsive: true,
+          language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search records"
+          },
+
+          "ajax":{
+            "url":"../ajax/firstLoad2.php",
+            "dataSrc":""
+          },
+          "columns":[
+            {"data":"sid"},
+            {"data":"fullName"},
+            {"data":"email"},
+            {"data":"contactno"},
+            {"data":"depCourse"},
+            {"data": "reqFiles",
+              "render": function (data, type, row, meta){
+                return type === 'display' && data.length >  40 ?
+                  '<span title="'+data+'">'+data.substr(0,35)+'...</span>':
+                  data;
+              }
+            },
+            {"data": "sid",
+              "render": function (data, type, row, meta){
+                return '<a href="#" rel="tooltip" title="" class="btn btn-link btn-warning btn-just-icon show" data-original-title="View Files"' 
+                          +'fullName="'+row.fullName+'"'
+                          +' reqFiles="'+row.reqFiles+'">'
+                          +'<i class="material-icons">dvr</i></a>';
+              }
+
+            }
+          ]
+        });
+
+      // // show a record
+      table.on('click', '.show', function(e) {
+         fullName = jQuery(this).attr('fullName');
+         reqFiles = jQuery(this).attr('reqFiles');
+        $('#gridSystemModalLabel').html('<span>'+fullName+'</span>');
+        $('#reqFile').html('<span>'+reqFiles+'</span>');
+
+        $('#countPage').modal('show');
+        e.preventDefault();
+      });
+     }
   firstLoad();
 
   //count TOR
@@ -1062,5 +1042,94 @@ TC();
 <script type="text/javascript">
   $(document).on('click','#addStudent',function(envent){
     window.location.replace("addStudent.php");
+  });
+
+
+  // monthly reporting session
+  $(document).on('change', '#reportMonhtly', function(event){
+    var month = $('#reportMonhtly').val();
+    $('#datatables').DataTable().destroy();
+    var table = $('#datatables').DataTable({
+          "pagingType": "full_numbers",
+          "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+          ],
+          responsive: true,
+          language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search records"
+          },
+
+          "ajax":{
+            "url":"../ajax/monthlyReport.php",
+            "type": "POST",
+            "data": {month:month},
+            "dataSrc":""
+          },
+          "columns":[
+            {"data":"sid"},
+            {"data":"fullName"},
+            {"data":"email"},
+            {"data":"contactno"},
+            {"data":"depCourse"},
+            {"data": "reqFiles",
+              "render": function (data, type, row, meta){
+                return type === 'display' && data.length >  40 ?
+                  '<span title="'+data+'">'+data.substr(0,35)+'...</span>':
+                  data;
+              }
+            },
+            {"data": "sid",
+              "render": function (data, type, row, meta){
+                return '<a href="#" rel="tooltip" title="" class="btn btn-link btn-warning btn-just-icon show" data-original-title="View Files"' 
+                          +'fullName="'+row.fullName+'"'
+                          +' reqFiles="'+row.reqFiles+'">'
+                          +'<i class="material-icons">dvr</i></a>';
+              }
+
+            }
+          ]
+        });
+
+  });
+
+  $(document).on('submit','#monthlyForm', function(event){
+    event.preventDefault();
+     var month = $('#reportMonhtly').val();
+     $('#datatablesReport').DataTable({
+          "bFilter": false,
+          "bInfo": false,
+          "paging": false,
+          "pagingType": "full_numbers",
+          "lengthMenu": [
+            [10, 25, 50, -1],
+            [10, 25, 50, "All"]
+          ],
+          responsive: true,
+          language: {
+            search: "_INPUT_",
+            searchPlaceholder: "Search records"
+          },
+          dom: 'lBfrtip',
+          button: [
+            'excel', 'csv', 'pdf', 'copy'
+          ],
+          "ajax":{
+            "url":"../ajax/monthlyReport.php",
+            "type": "POST",
+            "data": {month:month},
+            "dataSrc":""
+          },
+          "columns":[
+            {"data":"sid"},
+            {"data":"fullName"},
+            {"data":"email"},
+            {"data":"contactno"},
+            {"data":"depCourse"},
+            {"data": "reqFiles"}
+          ]
+        });
+    $('#monthlyReportPrinting').modal('show');
   });
 </script>

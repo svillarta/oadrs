@@ -258,7 +258,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
                 <div class="card-body">
                   <div class="toolbar row">
                     <!--        Here you can write extra buttons/actions for the toolbar              -->
-                    <a href="" class="btn btn-link col">TRANSCRIPT OF RECORD</a>
+                    <a href="" class="btn btn-link col">TRANSCRIPT OF RECORD <span class="badge" style="background: gray;">42</span></a>
                     <a href="" class="btn btn-link col">CERTIFICATE OF GRADES</a>
                     <a href="" class="btn btn-link col">GOODMORAL</a>
                     <a href="" class="btn btn-link col">HONORABLE DISMISSAL</a>
@@ -270,7 +270,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
                           <th>Date</th>
                           <th>Request</th>
                           <th>Pick-Up Date</th>
-                          <th>Amount</th>
+                         
                           <th>Remarks</th>
                           <th class="disabled-sorting text-right">Actions</th>
                         </tr>
@@ -280,7 +280,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
                           <th>Date</th>
                           <th>Request</th>
                           <th>Pick-Up Date</th>
-                          <th>Amount</th>
+                          
                           <th>Remarks</th>
                           <th class="disabled-sorting text-right">Actions</th>
                         </tr>
@@ -321,7 +321,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
                        
 
                         //get sid
-                        $sql = mysqli_query($conn,"SELECT * FROM s_request WHERE sid='$sid'");
+                        $sql = mysqli_query($conn,"SELECT * FROM s_request WHERE sid='$sid' ORDER BY sdate DESC");
                         if (mysqli_num_rows($sql)>0) {
                           while($row = mysqli_fetch_array($sql)) {
                              $srid = $row['srid'];
@@ -342,13 +342,13 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
                               </td>
                               
                               <td ><?php echo $row['pdate']; ?></td>
-                              <td ><?php echo $row2['sum(samount)']; ?></td>
+                              
                               <td ><?php echo $row['remarks']; ?></td>
                               <td class="text-right">
                                 <?php
                                 if ( $remarks == 'Pending') {
                                 ?>
-                                  <a href="#" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
+                                  <a href="#" rel="tooltip" title="" class="btn btn-link btn-warning btn-just-icon edit" data-original-title="View Files"><i class="material-icons">dvr</i></a>
                                   <a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a>
                                 <?php
                                 }else if($remarks =='Approved'){
@@ -401,7 +401,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
         </footer>
       </div>
     </div>
-    <div class="fixed-plugin">
+   <!--  <div class="fixed-plugin">
       <div class="dropdown show-dropdown">
         <a href="#" data-toggle="dropdown">
           <i class="fa fa-cog fa-2x"> </i>
@@ -502,7 +502,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
           </li>
         </ul>
       </div>
-    </div>
+    </div> -->
     <!--   Core JS Files   -->
   <script src="../../assets/js/core/jquery.min.js"></script>
   <script src="../../assets/js/core/popper.min.js"></script>
@@ -521,7 +521,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
   <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
   <script src="../../assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
   <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-  <script src="https://demos.creative-tim.com/material-dashboard-pro/assets/js/plugins/jquery.dataTables.min.js"></script>
+  <script src="../../assets/js/plugins/jquery.dataTables.min.js"></script>
   <!--  Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
   <script src="../../assets/js/plugins/bootstrap-tagsinput.js"></script>
   <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
@@ -602,16 +602,16 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
           }
         });
 
-        $('.fixed-plugin .background-color .badge').click(function() {
-          $(this).siblings().removeClass('active');
-          $(this).addClass('active');
+        // $('.fixed-plugin .background-color .badge').click(function() {
+        //   $(this).siblings().removeClass('active');
+        //   $(this).addClass('active');
 
-          var new_color = $(this).data('background-color');
+        //   var new_color = $(this).data('background-color');
 
-          if ($sidebar.length != 0) {
-            $sidebar.attr('data-background-color', new_color);
-          }
-        });
+        //   if ($sidebar.length != 0) {
+        //     $sidebar.attr('data-background-color', new_color);
+        //   }
+        // });
 
         $('.fixed-plugin .img-holder').click(function() {
           $full_page_background = $('.full-page-background');
@@ -812,6 +812,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
     $(document).ready(function() {
       $('#datatables').DataTable({
         "pagingType": "full_numbers",
+        "order": [[0,"desc"]],
         "lengthMenu": [
           [10, 25, 50, -1],
           [10, 25, 50, "All"]
@@ -823,7 +824,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
         }
       });
 
-      var table = $('#datatable').DataTable();
+      var table = $('#datatables').DataTable();
 
       // Edit record
       table.on('click', '.edit', function() {

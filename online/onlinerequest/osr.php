@@ -351,7 +351,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
         </footer>
       </div>
     </div>
-    <div class="fixed-plugin">
+    <!-- <div class="fixed-plugin">
       <div class="dropdown show-dropdown">
         <a href="#" data-toggle="dropdown">
           <i class="fa fa-cog fa-2x"> </i>
@@ -452,7 +452,7 @@ $fullName = $_SESSION['fName'].' '.$_SESSION['mi'].'. '.$_SESSION['lName'];
           </li>
         </ul>
       </div>
-    </div>
+    </div> -->
     <!--   Core JS Files   -->
   <script src="../../assets/js/core/jquery.min.js"></script>
   <script src="../../assets/js/core/popper.min.js"></script>
@@ -565,7 +565,7 @@ $('#TC').on('click',function(){
 
   }
 });
-  
+    
 
 </script>
 
@@ -577,7 +577,7 @@ $('#TC').on('click',function(){
     if (document.getElementById('TOR').checked == true) {
       var request     = $('#TOR').val();
       var purpose     = $('#TOR-Purpose').val();
-      if (purpose == null) {
+      if (purpose == "") {
         Swal.fire({
             icon: 'info',
             title: 'Oops...',
@@ -604,6 +604,12 @@ $('#TC').on('click',function(){
                 text: 'Wait for the approval of your request',
                 footer: 'we contact you as soon as the request is approved'
               })
+              document.getElementById('TC').checked   = false;
+              document.getElementById("HD").checked   = false;
+              document.getElementById("COG").checked  = false;
+              document.getElementById("TOR").checked  = false;
+              document.getElementById("G").checked    = false;
+              $('#TOR-Purpose1').hide('fadeOut');
             }else{
               Swal.fire({
                 icon: 'error',
@@ -638,6 +644,12 @@ $('#TC').on('click',function(){
                 text: 'Wait for the approval of your request',
                 footer: 'we contact you as soon as the request is approved'
               })
+              document.getElementById('TC').checked   = false;
+              document.getElementById("HD").checked   = false;
+              document.getElementById("COG").checked  = false;
+              document.getElementById("TOR").checked  = false;
+              document.getElementById("G").checked    = false;
+              $('#TOR-Purpose1').hide('fadeOut');
             }else{
               Swal.fire({
                 icon: 'error',
@@ -672,6 +684,12 @@ $('#TC').on('click',function(){
                 text: 'Wait for the approval of your request',
                 footer: 'we contact you as soon as the request is approved'
               })
+              document.getElementById('TC').checked   = false;
+              document.getElementById("HD").checked   = false;
+              document.getElementById("COG").checked  = false;
+              document.getElementById("TOR").checked  = false;
+              document.getElementById("G").checked    = false;
+              $('#TOR-Purpose1').hide('fadeOut');
             }else{
               Swal.fire({
                 icon: 'error',
@@ -706,6 +724,12 @@ $('#TC').on('click',function(){
                 text: 'Wait for the approval of your request',
                 footer: 'we contact you as soon as the request is approved'
               })
+              document.getElementById('TC').checked   = false;
+              document.getElementById("HD").checked   = false;
+              document.getElementById("COG").checked  = false;
+              document.getElementById("TOR").checked  = false;
+              document.getElementById("G").checked    = false;
+              $('#TOR-Purpose1').hide('fadeOut');
             }else{
               Swal.fire({
                 icon: 'error',
